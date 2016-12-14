@@ -2,7 +2,7 @@ import {
   autoRehydrate as baseAutoRehydrate,
   createPersistor as baseCreatePersistor,
   createTransform,
-  getStoredState,
+  getStoredState as baseGetStoredState,
   persistStore as basePersistStore,
   purgeStoredState
 } from 'redux-persist';
@@ -29,6 +29,11 @@ const createPersistor = (store, config = {}, ...args) => {
 const persistStore = (store, config = {}, ...args) => {
   return basePersistStore(store, extendConfig(config), ...args);
 };
+
+const getStoredState = (config = {}, ...args) => {
+  return baseGetStoredState(extendConfig(config), ...args);
+};
+
 
 export {
   autoRehydrate,
